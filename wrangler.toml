@@ -3,15 +3,12 @@ main = "src/cf-entry.ts"
 compatibility_date = "2026-05-02"
 compatibility_flags = [ "nodejs_compat" ]
 
-# 告诉 Cloudflare 我需要一个叫 KV 的绑定
-# ID 留空，发布后去网页后台手动绑定
-[[kv_namespaces]]
-binding = "KV"
-id = "" 
+# 不要写 [[kv_namespaces]] 这几行代码了！
+# 我们直接在网页后台手动绑定，这样你的 ID 就不会出现在 GitHub 上。
 
 [triggers]
 crons = ["0 * * * *"]
 
 [vars]
-# 这里的域名可以不填，或者填你以后想用的
+# 这里也可以留空，稍后在网页后台手动填入，保护隐私
 WORKER_BASE_URL = ""
