@@ -1,24 +1,17 @@
 name = "tvbox-source-aggregator"
 main = "src/cf-entry.ts"
-compatibility_date = "2026-05-2"
+compatibility_date = "2026-05-02"
 compatibility_flags = [ "nodejs_compat" ]
 
-# 自定义域名（可选，推荐配置）
-# 取消注释并替换为你自己的域名和 Zone ID
-routes = [
-   { pattern = "leetvbox.qzz.io/*", zone_id = "fc52331753ebceb05bed347d63593f6d" }
- ]
-
-[triggers]
-crons = ["0 * * * *"]  # 每小时触发，实际执行频率由 Admin 设置的聚合间隔控制
-
+# 告诉 Cloudflare 我需要一个叫 KV 的绑定
+# ID 留空，发布后去网页后台手动绑定
 [[kv_namespaces]]
 binding = "KV"
-id = "8127262664c44d8a9b4b32676b6c1970"
-preview_id = "983b9afa7c064e368684d1af55b02053"
+id = "" 
+
+[triggers]
+crons = ["0 * * * *"]
 
 [vars]
-SPEED_TIMEOUT_MS = "5000"   # 源地址延迟阈值（毫秒）
-SITE_TIMEOUT_MS = "3000"    # 站点 API 延迟阈值（毫秒）
-FETCH_TIMEOUT_MS = "5000"   # 抓取配置 JSON 超时（毫秒）
-WORKER_BASE_URL = "https://leetvbox.qzz.io"  # CF 边缘代理依赖此配置（JAR/MacCMS/直播源代理）
+# 这里的域名可以不填，或者填你以后想用的
+WORKER_BASE_URL = ""
